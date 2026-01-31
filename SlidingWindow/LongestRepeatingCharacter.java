@@ -7,6 +7,8 @@ Input: s = "ABAB", k = 2
 Output: 4
 Explanation: Replace the two 'A's with two 'B's or vice versa.
 */
+import java.util.Map;
+import java.util.HashMap;
 public class LongestRepeatingCharacter{
 	public static void main(String[] args){
           System.out.print(longestreplacement("ABAB",2));		
@@ -17,15 +19,14 @@ public class LongestRepeatingCharacter{
 		while(high<s.length()){
 			char ch=s.charAt(high);
 			map.put(ch,map.getOrDefault(ch,0)+1);
-			for(Map.Entry<Character,Integer>m:map.entrySet()){
-				int v=map.getValue();
-				int k=map.getKey();
-				maxFreq=Math.max(v);
-			}
-			while(high-low>2){
-				map.put(s.charAt(low),maap.get(s.charAt(low)-1));
+			maxFreq=Math.max(maxFreq,map.get(ch));
+			int window=high-low+1;
+			while(window-maxFreq>k){
+				map.put(s.charAt(low),map.get(s.charAt(low))-1);
 				low++;
+				window--;
 			}
+			max=Math.max(max,window);
 			high++;
 		}
 		return max;
